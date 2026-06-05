@@ -84,6 +84,41 @@
     .caution-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--moss);margin-bottom:0.5rem}
     .caution p{font-size:0.85rem;margin-bottom:0.5rem;max-width:100%}
     .caution p:last-child{margin-bottom:0}
+
+    @media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1rem;
+  }
+  .sidenav {
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .sidenav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .sidenav a {
+    border-left: none;
+    border-bottom: 1px solid transparent;
+    padding-left: 0;
+    font-size: 0.72rem;
+  }
+  .content {
+    padding-left: 0;
+  }
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+  h1, h2 {
+    font-size: 2rem;
+  }
+}
   </style>
 </head>
 <body>
