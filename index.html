@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canopy — Environmental Science & Engineering, IIT Bombay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --ink:#1c1f1c;--ink-mid:#4d5450;--ink-soft:#8e9690;
+      --moss:#3d5c3f;--moss-mid:#c2d4c3;--cream:#f8f7f3;--rule:rgba(61,92,63,0.12);
+    }
+    body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(--ink);overflow:hidden;height:100vh}
+    .bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+    .bg svg{width:100%;height:100%}
+    nav{position:relative;z-index:2;display:flex;align-items:center;padding:1.5rem 3rem;border-bottom:1px solid var(--rule);background:rgba(248,247,243,0.82);backdrop-filter:blur(8px)}
+    .logo{display:flex;align-items:center;gap:0.55rem}
+    .wordmark{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:400;color:var(--moss);letter-spacing:0.04em}
+    .wordmark sup{font-family:'Instrument Sans',sans-serif;font-size:0.58rem;font-weight:400;color:var(--ink-soft);letter-spacing:0.06em;vertical-align:super;margin-left:2px;text-transform:uppercase}
+    .hero{position:relative;z-index:1;min-height:82vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 3rem}
+    .eyebrow{display:flex;align-items:center;gap:0.75rem;margin-bottom:2.5rem}
+    .eyebrow-line{width:24px;height:1px;background:var(--moss-mid)}
+    .eyebrow-text{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-soft)}
+    h1{font-family:'Playfair Display',serif;font-size:4rem;line-height:1.1;color:var(--ink);letter-spacing:-0.01em;font-weight:400;max-width:640px;margin-bottom:0.75rem}
+    h1 em{font-style:italic;color:var(--moss)}
+    .dept-label{font-size:0.78rem;color:var(--ink-soft);letter-spacing:0.06em;margin-bottom:2.5rem;text-transform:uppercase}
+    .dept-label span{color:var(--moss);font-weight:500;border-bottom:1px solid var(--moss-mid);padding-bottom:1px}
+    .btn-solid{background:var(--moss);color:white;padding:0.8rem 2rem;font-size:0.85rem;font-weight:500;letter-spacing:0.04em;text-decoration:none;transition:background 0.2s;display:inline-block}
+    .btn-solid:hover{background:#2e4530}
+    footer{position:relative;z-index:2;border-top:1px solid var(--rule);padding:1.25rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(248,247,243,0.82)}
+    .footer-note{font-size:0.72rem;color:var(--ink-soft);display:flex;align-items:center;gap:0.4rem}
+    .about-wrap{position:relative;display:inline-block}
+    .about-link{color:var(--moss);text-decoration:none;border-bottom:1px solid var(--moss-mid);padding-bottom:1px;cursor:pointer}
+    .tooltip{position:absolute;bottom:calc(100% + 10px);left:0;background:var(--ink);color:white;font-size:0.7rem;line-height:1.6;padding:0.85rem 1rem;width:260px;opacity:0;pointer-events:none;transition:opacity 0.2s;z-index:10}
+    .tooltip a{color:var(--moss-mid);text-decoration:none;border-bottom:1px solid rgba(194,212,195,0.4)}
+    .tooltip a:hover{color:white}
+    .tooltip::after{content:'';position:absolute;top:100%;left:16px;border:5px solid transparent;border-top-color:var(--ink)}
+    .about-wrap:hover .tooltip{opacity:1;pointer-events:all}
+    .data-tag{font-size:0.7rem;color:var(--ink-soft);border:1px solid var(--rule);padding:0.25rem 0.65rem;letter-spacing:0.03em}
+  </style>
+</head>
+<body>
+
+<div class="bg">
+<svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="ff" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="55%" stop-color="#f8f7f3" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#f8f7f3" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="cf" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f8f7f3" stop-opacity="1"/>
+      <stop offset="45%" stop-color="#f8f7f3" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="ctr" cx="50%" cy="48%" r="32%">
+      <stop offset="0%" stop-color="#f8f7f3" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#f8f7f3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lakefade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8f7f3" stop-opacity="1"/>
+      <stop offset="30%" stop-color="#f8f7f3" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#f8f7f3" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#f8f7f3" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <!-- FOREST LEFT -->
+  <g opacity="0.28">
+    <ellipse cx="220" cy="820" rx="280" ry="18" fill="#4a7c59" opacity="0.15"/>
+    <rect x="68" y="480" width="7" height="340" fill="#5c4a32" rx="2"/>
+    <polygon points="71,160 20,500 122,500" fill="#3d5c3f"/>
+    <polygon points="71,260 28,480 114,480" fill="#4a7c59"/>
+    <polygon points="71,340 34,490 108,490" fill="#5a8c64"/>
+    <rect x="148" y="530" width="6" height="290" fill="#5c4a32" rx="2"/>
+    <polygon points="151,230 108,550 194,550" fill="#3d5c3f"/>
+    <polygon points="151,320 114,530 188,530" fill="#4a7c59"/>
+    <polygon points="151,400 120,540 182,540" fill="#5a8c64"/>
+    <rect x="228" y="570" width="5" height="250" fill="#5c4a32" rx="2"/>
+    <polygon points="230,320 192,585 268,585" fill="#4a7c59"/>
+    <polygon points="230,400 198,575 262,575" fill="#5a8c64"/>
+    <rect x="18" y="560" width="5" height="260" fill="#5c4a32" rx="2" opacity="0.6"/>
+    <polygon points="20,340 -10,575 50,575" fill="#2e4530" opacity="0.7"/>
+    <rect x="300" y="590" width="5" height="230" fill="#5c4a32" rx="2"/>
+    <polygon points="302,370 265,605 339,605" fill="#3d5c3f"/>
+    <polygon points="302,440 272,600 332,600" fill="#4a7c59"/>
+    <ellipse cx="100" cy="818" rx="55" ry="12" fill="#3d5c3f" opacity="0.3"/>
+    <ellipse cx="200" cy="822" rx="45" ry="10" fill="#4a7c59" opacity="0.25"/>
+    <ellipse cx="290" cy="820" rx="38" ry="9" fill="#3d5c3f" opacity="0.2"/>
+  </g>
+  <rect x="0" y="0" width="400" height="900" fill="url(#ff)"/>
+  <!-- CITY RIGHT -->
+  <g opacity="0.22">
+    <rect x="1050" y="300" width="52" height="520" fill="#8a8a82" rx="1"/>
+    <rect x="1050" y="300" width="52" height="4" fill="#6b6b63"/>
+    <g fill="#c8c8be" opacity="0.6">
+      <rect x="1057" y="315" width="8" height="10" rx="1"/><rect x="1071" y="315" width="8" height="10" rx="1"/><rect x="1085" y="315" width="8" height="10" rx="1"/>
+      <rect x="1057" y="335" width="8" height="10" rx="1"/><rect x="1071" y="335" width="8" height="10" rx="1"/><rect x="1085" y="335" width="8" height="10" rx="1"/>
+      <rect x="1057" y="355" width="8" height="10" rx="1"/><rect x="1071" y="355" width="8" height="10" rx="1"/><rect x="1085" y="355" width="8" height="10" rx="1"/>
+      <rect x="1057" y="375" width="8" height="10" rx="1"/><rect x="1085" y="375" width="8" height="10" rx="1"/>
+    </g>
+    <rect x="1108" y="420" width="44" height="400" fill="#7a7a72" rx="1"/>
+    <g fill="#c8c8be" opacity="0.5">
+      <rect x="1115" y="435" width="7" height="9" rx="1"/><rect x="1128" y="435" width="7" height="9" rx="1"/><rect x="1141" y="435" width="7" height="9" rx="1"/>
+      <rect x="1115" y="454" width="7" height="9" rx="1"/><rect x="1128" y="454" width="7" height="9" rx="1"/><rect x="1141" y="454" width="7" height="9" rx="1"/>
+      <rect x="1115" y="473" width="7" height="9" rx="1"/><rect x="1141" y="473" width="7" height="9" rx="1"/>
+    </g>
+    <rect x="1158" y="380" width="68" height="440" fill="#969690" rx="1"/>
+    <g fill="#bdbdb4" opacity="0.5">
+      <rect x="1166" y="395" width="9" height="12" rx="1"/><rect x="1181" y="395" width="9" height="12" rx="1"/><rect x="1196" y="395" width="9" height="12" rx="1"/><rect x="1211" y="395" width="9" height="12" rx="1"/>
+      <rect x="1166" y="418" width="9" height="12" rx="1"/><rect x="1181" y="418" width="9" height="12" rx="1"/><rect x="1196" y="418" width="9" height="12" rx="1"/><rect x="1211" y="418" width="9" height="12" rx="1"/>
+      <rect x="1166" y="441" width="9" height="12" rx="1"/><rect x="1196" y="441" width="9" height="12" rx="1"/><rect x="1211" y="441" width="9" height="12" rx="1"/>
+    </g>
+    <rect x="1232" y="340" width="36" height="480" fill="#7e7e78" rx="1"/>
+    <line x1="1250" y1="280" x2="1250" y2="340" stroke="#6b6b63" stroke-width="2"/>
+    <g fill="#bdbdb4" opacity="0.5">
+      <rect x="1238" y="358" width="6" height="8" rx="1"/><rect x="1250" y="358" width="6" height="8" rx="1"/>
+      <rect x="1238" y="374" width="6" height="8" rx="1"/><rect x="1250" y="374" width="6" height="8" rx="1"/>
+    </g>
+    <rect x="1285" y="460" width="55" height="360" fill="#8a8a85" rx="1" opacity="0.7"/>
+    <rect x="1346" y="400" width="80" height="420" fill="#7a7a75" rx="1" opacity="0.6"/>
+    <rect x="1020" y="818" width="450" height="12" fill="#8a8a82" opacity="0.3" rx="1"/>
+    <ellipse cx="1200" cy="350" rx="220" ry="30" fill="#a0a098" opacity="0.06"/>
+  </g>
+  <rect x="1040" y="0" width="400" height="900" fill="url(#cf)"/>
+  <!-- LAKE -->
+  <g opacity="0.22">
+    <ellipse cx="720" cy="840" rx="280" ry="42" fill="#6a9fb5"/>
+    <ellipse cx="720" cy="840" rx="260" ry="36" fill="#7ab4cc" opacity="0.6"/>
+    <ellipse cx="720" cy="838" rx="180" ry="14" fill="none" stroke="#5a8fa5" stroke-width="1" opacity="0.5"/>
+    <ellipse cx="720" cy="838" rx="120" ry="9" fill="none" stroke="#5a8fa5" stroke-width="0.8" opacity="0.4"/>
+    <ellipse cx="720" cy="838" rx="60" ry="5" fill="none" stroke="#7ab4cc" stroke-width="0.6" opacity="0.4"/>
+    <line x1="580" y1="826" x2="560" y2="858" stroke="#4a7c59" stroke-width="1.2" opacity="0.3"/>
+    <line x1="600" y1="824" x2="588" y2="856" stroke="#3d5c3f" stroke-width="1" opacity="0.25"/>
+    <line x1="840" y1="826" x2="858" y2="858" stroke="#8a8a82" stroke-width="1.2" opacity="0.25"/>
+    <line x1="860" y1="824" x2="872" y2="856" stroke="#7a7a72" stroke-width="1" opacity="0.2"/>
+  </g>
+  <rect x="380" y="750" width="680" height="150" fill="url(#lakefade)"/>
+  <rect x="0" y="0" width="1440" height="900" fill="url(#ctr)"/>
+</svg>
+</div>
+
+<nav>
+  <div class="logo">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C8 5 5 7 4 10C3 13 5 16 8 17C9 17.5 10 17.6 11 17.5" stroke="#3d5c3f" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M11 2C14 5 17 7 18 10C19 13 17 16 14 17C13 17.5 12 17.6 11 17.5" stroke="#3d5c3f" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <line x1="11" y1="17.5" x2="11" y2="21" stroke="#3d5c3f" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M7 11Q9 10.5 11 11Q13 11.5 15 11" stroke="#3d5c3f" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+    <div class="wordmark">Canopy<sup>beta</sup></div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">IIT Bombay · 2026–27</span>
+    <div class="eyebrow-line"></div>
+  </div>
+  <h1>The branch nobody tells you <em>enough</em> about.</h1>
+  <div class="dept-label"><span>Environmental Science & Engineering</span> · IITB</div>
+  <a href="guide.html" class="btn-solid">Read the guide →</a>
+</section>
+
+<footer>
+  <div class="footer-note">
+    Made by a student · not an official resource ·
+    <div class="about-wrap">
+      <span class="about-link">About</span>
+      <div class="tooltip">During JoSAA 2025, I couldn't find a single honest, clear resource about EnvSci at IITB. So I made one. — Teertha, first-year BTech Environmental Science & Engineering, IIT Bombay.<br><br><a href="https://www.linkedin.com/in/teerthagandhi/" target="_blank">LinkedIn →</a> · <a href="https://www.instagram.com/teerthagandhi/" target="_blank">Instagram →</a></div>
+    </div>
+  </div>
+  <div class="data-tag">Data: JoSAA 2025</div>
+</footer>
+
+</body>
+</html>

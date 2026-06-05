@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Guide — Canopy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --ink:#1c1f1c;--ink-mid:#4d5450;--ink-soft:#8e9690;
+      --moss:#3d5c3f;--moss-light:#eef3ee;--moss-mid:#c2d4c3;
+      --cream:#f8f7f3;--white:#fff;--rule:rgba(61,92,63,0.12);
+    }
+    body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7}
+
+    /* TOP NAV */
+    .topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;border-bottom:1px solid var(--rule);background:rgba(248,247,243,0.92);backdrop-filter:blur(8px)}
+    .logo{display:flex;align-items:center;gap:0.5rem;text-decoration:none}
+    .wordmark{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--moss);letter-spacing:0.04em}
+    .wordmark sup{font-family:'Instrument Sans',sans-serif;font-size:0.55rem;color:var(--ink-soft);vertical-align:super;margin-left:2px;text-transform:uppercase}
+    .back{font-size:0.75rem;color:var(--ink-soft);text-decoration:none;display:flex;align-items:center;gap:0.35rem;transition:color 0.2s}
+    .back:hover{color:var(--moss)}
+
+    /* LAYOUT */
+    .layout{display:grid;grid-template-columns:200px 1fr;gap:0;max-width:1100px;margin:0 auto;padding:3rem 2rem}
+
+    /* SIDE NAV */
+    .sidenav{position:sticky;top:72px;height:fit-content;padding-right:2.5rem;border-right:1px solid var(--rule)}
+    .sidenav-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-soft);margin-bottom:1rem}
+    .sidenav ul{list-style:none;display:flex;flex-direction:column;gap:0.1rem}
+    .sidenav a{font-size:0.78rem;color:var(--ink-soft);text-decoration:none;display:block;padding:0.35rem 0;border-left:2px solid transparent;padding-left:0.75rem;transition:all 0.2s;line-height:1.4}
+    .sidenav a:hover{color:var(--moss)}
+    .sidenav a.active{color:var(--moss);border-left-color:var(--moss);font-weight:500}
+
+    /* CONTENT */
+    .content{padding-left:3rem}
+    .section{padding-bottom:4rem;border-bottom:1px solid var(--rule);margin-bottom:4rem}
+    .section:last-child{border-bottom:none;margin-bottom:0}
+    .section-tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-soft);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+    .section-tag::before{content:'';width:16px;height:1px;background:var(--moss-mid)}
+    h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:1.25rem;letter-spacing:-0.01em}
+    h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--ink);margin-bottom:0.6rem;margin-top:1.75rem}
+    p{font-size:0.93rem;color:var(--ink-mid);margin-bottom:1rem;font-weight:300;max-width:600px}
+    p strong{color:var(--ink);font-weight:500}
+
+    /* QUOTE BLOCK */
+    .quote-block{border-left:2px solid var(--moss);padding:1rem 1.5rem;margin-bottom:3rem;background:var(--moss-light)}
+    .quote-block blockquote{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:var(--ink);line-height:1.5;font-weight:400}
+    .quote-block cite{display:block;font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;font-style:normal}
+
+    /* INLINE QUOTE */
+    .inline-quote{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--moss);border-left:2px solid var(--moss-mid);padding-left:1rem;margin:1.25rem 0;line-height:1.55}
+    .inline-quote cite{display:block;font-size:0.72rem;color:var(--ink-soft);font-style:normal;margin-top:0.3rem}
+
+    /* PILL */
+    .pill{display:inline-block;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.07em;background:var(--moss-light);color:var(--moss);padding:0.25rem 0.65rem;margin-bottom:1.25rem;border:1px solid var(--rule)}
+
+    /* TWO COL */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0}
+    .col-card{background:var(--white);border:1px solid var(--rule);padding:1.25rem 1.5rem}
+    .col-card h4{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--moss);margin-bottom:0.6rem}
+    .col-card p{font-size:0.82rem;margin-bottom:0}
+
+    /* MYTH */
+    .myth{background:var(--white);border:1px solid var(--rule);padding:1.25rem 1.5rem;margin-bottom:1rem}
+    .myth-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:#b04a4a;margin-bottom:0.4rem}
+    .myth h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:var(--ink);margin-bottom:0.6rem}
+    .myth p{font-size:0.82rem;margin-bottom:0}
+
+    /* RESOURCE LINK */
+    .resource-link{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.25rem;border:1px solid var(--rule);background:var(--white);margin-bottom:0.75rem;text-decoration:none;transition:background 0.2s}
+    .resource-link:hover{background:var(--moss-light)}
+    .resource-link span{font-size:0.85rem;color:var(--ink)}
+    .resource-link small{font-size:0.72rem;color:var(--ink-soft)}
+
+    /* PLACEHOLDER */
+    .placeholder{border:1px dashed var(--moss-mid);padding:1.5rem;text-align:center;margin:1rem 0}
+    .placeholder p{font-size:0.82rem;color:var(--ink-soft);margin:0;font-style:italic;max-width:100%}
+
+    /* CAUTION */
+    .caution{background:var(--moss-light);border:1px solid var(--moss-mid);padding:1.25rem 1.5rem;margin:1.5rem 0}
+    .caution-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--moss);margin-bottom:0.5rem}
+    .caution p{font-size:0.85rem;margin-bottom:0.5rem;max-width:100%}
+    .caution p:last-child{margin-bottom:0}
+  </style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="logo" href="index.html">
+    <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C8 5 5 7 4 10C3 13 5 16 8 17C9 17.5 10 17.6 11 17.5" stroke="#3d5c3f" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M11 2C14 5 17 7 18 10C19 13 17 16 14 17C13 17.5 12 17.6 11 17.5" stroke="#3d5c3f" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <line x1="11" y1="17.5" x2="11" y2="21" stroke="#3d5c3f" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M7 11Q9 10.5 11 11Q13 11.5 15 11" stroke="#3d5c3f" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+    <div class="wordmark">Canopy<sup>beta</sup></div>
+  </a>
+  <a class="back" href="index.html">← Back to home</a>
+</nav>
+
+<div class="layout">
+  <aside class="sidenav">
+    <div class="sidenav-label">In this guide</div>
+    <ul>
+      <li><a href="#narrow" class="active">Narrowing down</a></li>
+      <li><a href="#what">What is EnvSci?</a></li>
+      <li><a href="#branch">About the branch</a></li>
+      <li><a href="#dept">The department</a></li>
+      <li><a href="#scope">Future scope</a></li>
+      <li><a href="#why">Why seniors chose it</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#myths">Busting myths</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <!-- EINSTEIN QUOTE -->
+    <div class="quote-block">
+      <blockquote>"Environment is everything that isn't me."</blockquote>
+      <cite>— Albert Einstein</cite>
+    </div>
+
+    <!-- 01: NARROWING DOWN -->
+    <section class="section" id="narrow">
+      <div class="section-tag">01</div>
+      <h2>How to narrow down your choices</h2>
+      <p>Before getting to EnvSci specifically, it helps to zoom out. There's a useful distinction most people don't talk about openly during JoSAA: <strong>circuital vs non-circuital branches.</strong></p>
+      <p>Circuital branches — CSE, EE, ECE and similar — are built around electronics, computing, and systems. Non-circuital ones — Mech, Chemical, Civil, Metallurgy, Environmental — are everything else.</p>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>If you're 80%+ sure about tech</h4>
+          <p>A circuital branch at any IIT makes sense. The ecosystem, placements, and peer group will align with where you want to go.</p>
+        </div>
+        <div class="col-card">
+          <h4>If you're open or unsure</h4>
+          <p>Non-circuital branches give you exposure, flexibility, and genuine optionality. You can always move into tech later. The reverse is harder.</p>
+        </div>
+      </div>
+
+      <p>Once you've decided on non-circuital, don't compare branches blindly — X at IIT1 vs Y at IIT2 is the wrong frame. What actually matters:</p>
+      <p><strong>Curriculum fit</strong> — read it, actually. Does the coursework interest you or does it feel like a grind just looking at it? <strong>Campus culture</strong> — startup scene, academic rigour, inter-IIT culture. <strong>Practical things</strong> — distance from home matters more than people admit.</p>
+
+      <p>To get a realistic idea of which branches you can get at your rank — go to the official JoSAA portal, look at opening and closing ranks over the last 2–3 years, and pick the final round number as your benchmark. And remember: cutoffs can swing ±100 ranks year to year, so don't treat any single year as gospel.</p>
+
+      <a class="resource-link" href="https://josaa.nic.in/document/previous-years-or-cr/" target="_blank">
+        <span>JoSAA opening & closing ranks — official data</span>
+        <small>josaa.nic.in ↗</small>
+      </a>
+
+      <div class="caution">
+        <div class="caution-label">Word of caution</div>
+        <p><strong>IIT Bombay does not have branch change.</strong> Unlike some other IITs where branch change is possible after the first year based on CPI, IITB does not offer this. If you join a branch here, that's your branch.</p>
+        <p>Some other IITs do allow it — but even then, don't build your entire plan around it. It's competitive, conditional, and not guaranteed.</p>
+        <p>A minor is almost always available at any IIT. If you want exposure to another field, that's the smarter, lower-risk path — and it doesn't require betting on your first-year CPI.</p>
+      </div>
+    </section>
+
+    <!-- 02: WHAT IS ENVSCI -->
+    <section class="section" id="what">
+      <div class="section-tag">02</div>
+      <h2>What exactly is environmental science?</h2>
+      <p>Most people hear "environmental science" and think of either a geography class or someone hugging a tree. It's neither.</p>
+      <p>Environmental science is genuinely interdisciplinary — not as a buzzword, but in practice. It draws from natural sciences like biology, physics and chemistry, the social sciences like political science, geography and economics, and the humanities — ethics and philosophy included. Because environmental problems are never just technical. They're political, economic, and deeply human.</p>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>Natural Sciences</h4>
+          <p>Biology, physics, chemistry — the hard science foundation. How ecosystems work, how pollutants behave, how the atmosphere moves.</p>
+        </div>
+        <div class="col-card">
+          <h4>Social Sciences & Humanities</h4>
+          <p>Political science, geography, economics, ethics, philosophy. Environmental problems are never purely technical — they're political, economic, and human.</p>
+        </div>
+      </div>
+
+      <p>If you've always felt like your interests don't fit neatly into one box — science <em>and</em> society, data <em>and</em> policy — that's not a weakness here. That's the point of the field.</p>
+
+<div class="inline-quote">
+  "In the second semester, there's this course ES204 — Environmental Chemistry. It had a lot of physical chemistry in it — the kind you'd recognise from JEE prep. But it didn't feel like JEE at all. We were using those same concepts to understand real-world problems — water treatment, atmospheric reactions, pollution chemistry. The theory was familiar but the application was completely different. That's probably the best one-line description of environmental science I can give: familiar tools, unfamiliar and more interesting problems."
+  <cite>— Teertha, first-year BTech Environmental Science & Engineering, IIT Bombay</cite>
+</div>
+    </section>
+
+    <!-- 03: ABOUT THE BRANCH -->
+    <section class="section" id="branch">
+      <div class="section-tag">03</div>
+      <h2>About the branch</h2>
+      <span class="pill">IIT Bombay · BTech EnvSci & Engineering</span>
+
+      <h3>What it's actually like</h3>
+      <p>The branch is more quantitative than most people expect coming in. There's modelling, data analysis, some coding. It's not all field trips and ecology lectures — though those exist too.</p>
+
+      <h3>Flexibility & curriculum</h3>
+      <p>One of the more underrated things about this branch: from semesters 6, 7, and 8, you get significant freedom to choose your own courses based on what you want to specialise in. It's not a rigid pipeline. The most honest way to understand what you'll study is to read the curriculum directly — don't take anyone's word for it, including this guide's.</p>
+
+      <h3>Workload</h3>
+      <p>Honestly? About <strong>1–2 hours a day</strong> if you want to actually learn the material. Or an all-nighter before exams if you just want to pass. The branch gives you that choice — which is a double-edged sword.</p>
+
+      <h3>What seniors go on to do</h3>
+      <p>The range is wider than you'd expect. Research internships at places like Stanford. Consulting firms. ESG roles. Their own startups. Organising Mood Indigo. The diversity of outcomes is one of the more honest signals about what this branch prepares you for — which is less a specific job and more a way of thinking.</p>
+
+      <h3>Campus life</h3>
+      <p>The department runs its own annual fest called Tatva. Beyond that, students are part of the broader IITB campus life — Mood Indigo, Techfest, and everything else that comes with being at one of the more active campuses in the country.</p>
+    </section>
+
+    <!-- 04: DEPARTMENT -->
+    <section class="section" id="dept">
+      <div class="section-tag">04</div>
+      <h2>The department</h2>
+      <p>ESED has roots going back to 1977, when environmental engineering started as an interdisciplinary postgraduate programme. It became a formal centre in 1985, and <strong>achieved full department status in February 2019</strong> — making it one of the newer departments at IITB.</p>
+      <p>The undergraduate programme itself has an even shorter history. The BTech-MTech dual degree launched in 2018, but was discontinued in 2023. <strong>The standalone BTech programme has only been running since autumn 2023</strong> — the 2026-27 batch will be just the fourth cohort to go through it. That newness is worth knowing: the programme is still finding its shape, which cuts both ways.</p>
+<a class="resource-link" href="https://www.esed.iitb.ac.in" target="_blank">
+  <span>Official ESED website</span>
+  <small>esed.iitb.ac.in ↗</small>
+</a>
+<a class="resource-link" href="https://www.esed.iitb.ac.in/environmental-science-and-engineering-association-esea" target="_blank">
+  <span>ESEA — Environmental Science & Engineering Association</span>
+  <small>Student council ↗</small>
+</a>
+<a class="resource-link" href="https://www.instagram.com/eseaiitb?igsh=MWNsYXY3YmNvdmI0OA==" target="_blank">
+  <span>ESEA on Instagram</span>
+  <small>@eseaiitb ↗</small>
+</a>
+<a class="resource-link" href="https://www.youtube.com/@ESEDIITB" target="_blank">
+  <span>ESED IIT Bombay on YouTube</span>
+  <small>@ESEDIITB ↗</small>
+</a>
+<div class="caution" style="margin-top:1.25rem">
+  <div class="caution-label">On placements</div>
+  <p>IITB does not release official placement data publicly. More importantly, since the standalone BTech programme has no graduates yet — the first batch completes in 2027 — there is no placement data for this programme at all. Anyone claiming otherwise is guessing.</p>
+</div>
+    </section>
+
+    <!-- 05: FUTURE SCOPE -->
+    <section class="section" id="scope">
+      <div class="section-tag">05</div>
+      <h2>Future scope</h2>
+      <div class="placeholder">
+        <p>This section will be updated with real data and senior perspectives on where the field is heading — ESG, climate policy, carbon markets, water, air quality management, and more. Watch this space.</p>
+      </div>
+    </section>
+
+    <!-- 06: WHY SENIORS CHOSE IT -->
+    <section class="section" id="why">
+      <div class="section-tag">06</div>
+      <h2>Why students chose ESED</h2>
+      <p>The most useful thing isn't what the department says about itself. It's what people already inside it tell you — honestly, not on a brochure.</p>
+      <div class="inline-quote">
+        "I knew it was going to be non-circuital. I had options for Civil and MeMS at IITB, but chose ESED because I liked its curriculum the best. I also had a keen interest in finance, so it came down to IITB ESED vs IIT KGP Economics. Bombay won — partly the distance (I'm from Pune), partly because Bombay is Bombay. Don't regret the decision."
+        <cite>— Teertha, first-year BTech Environmental Science & Engineering, IIT Bombay</cite>
+      </div>
+
+      <div class="placeholder">
+        <p>More senior voices coming soon — perspectives from students across years on why they chose this branch and what they'd tell their JoSAA-season selves.</p>
+      </div>
+    </section>
+
+    <!-- 07: RESOURCES -->
+    <section class="section" id="resources">
+      <div class="section-tag">07</div>
+      <h2>Resources to get started</h2>
+      <p>If you're seriously considering IITB or have already confirmed your seat, these are worth bookmarking.</p>
+      <a class="resource-link" href="https://smp.gymkhana.iitb.ac.in" target="_blank">
+        <span>Student Mentorship Programme (SMP)</span>
+        <small>smp.gymkhana.iitb.ac.in ↗</small>
+      </a>
+      <div class="placeholder">
+        <p>WhatsApp group link — to be added</p>
+      </div>
+    </section>
+
+    <!-- 08: MYTHS -->
+    <section class="section" id="myths">
+      <div class="section-tag">08</div>
+      <h2>Busting some myths</h2>
+      <p>A few things that get said about this branch during JoSAA season that are worth addressing directly.</p>
+
+      <div class="myth">
+        <div class="myth-label">Myth</div>
+        <h4>"EnvSci is a lower branch."</h4>
+        <p>A branch is made by the people in it — not by opening and closing ranks. Those ranks reflect a trend, partly because the branch is relatively new and awareness around it is still growing. Judge the curriculum, the faculty, the outcomes — not a number on a list.</p>
+      </div>
+
+      <div class="myth">
+        <div class="myth-label">Myth</div>
+        <h4>"It's just EVS — pure memorisation."</h4>
+        <p>Some courses do require you to remember things — but that's true of every branch at every IIT. Environmental science at this level is analytical, quantitative, and research-oriented. The EVS course you took in school has almost nothing to do with what's taught here.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.sidenav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidenav a[href="#${e.target.id}"]`);
+        if(active) active.classList.add('active');
+      }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
